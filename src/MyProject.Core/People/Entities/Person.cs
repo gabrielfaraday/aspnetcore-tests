@@ -32,10 +32,11 @@ namespace MyProject.Core.People.Entities
 
         public ValidationResult ValidationResult { get; private set; }
 
-        public bool IsValid()
+        public virtual bool IsValid()
         {
             ValidateName();
             ValidateEmail();
+            
             ValidationResult = Validate(this);
 
             return ValidationResult.IsValid;
@@ -53,14 +54,7 @@ namespace MyProject.Core.People.Entities
             RuleFor(c => c.Email)
                 .NotEmpty().WithMessage("E-mail can't be empty.")
                 .Matches(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$").WithMessage("E-mail is not in valid format.")
-                .MaximumLength(40).WithMessage("E-mail length must be maximum 40.");
-        }
-
-        private void ValidateDateOfBirth()
-        {
-            RuleFor(c => c.DateOfBirth)
-                .NotNull().WithMessage("Date of birth can't be empty.")
-                .GreaterThanOrEqualTo(DateTime.Today.AddYears(-18)).WithMessage("Person must be at least 18.");
+                .MaximumLength(20).WithMessage("E-mail length must be maximum 20.");
         }
     }
 }
