@@ -13,7 +13,7 @@ namespace MyProject.Core.People.Services
         {
             _repository = repository;
         }
-        public Person Add(Person entity)
+        public virtual Person Add(Person entity)
         {
             if (!entity.IsValid())
                 return entity;

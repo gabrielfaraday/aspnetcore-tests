@@ -45,12 +45,9 @@ namespace MyProject.Api.Controllers
             var person = _personService.Add(dto.ToEntity());
 
             if (!person.IsValid())
-            {
-                var errors = person.ValidationResult.Errors.Select(x => x.ErrorMessage).ToList();
-                return BadRequest(string.Join("; ", errors.Distinct()));
-            }
+                return BadRequest();
 
-            return Ok(person.ToDto());
+            return StatusCode(201, person.ToDto());
         }
     }
 }
