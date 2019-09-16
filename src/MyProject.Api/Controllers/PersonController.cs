@@ -7,7 +7,7 @@ using MyProject.Core.People.Interfaces;
 namespace MyProject.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/person")]
     public class PersonController : ControllerBase
     {
         IPersonService _personService;
